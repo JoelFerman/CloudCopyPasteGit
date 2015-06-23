@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="yaxstudio.com.cloudcopypaste.RegisterActivity">
+
+    <include layout="@layout/header" android:id="@+id/header" />
+
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/btnHeaderLeft"
+        android:background="@drawable/ic_arrow_back"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtHeaderTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Register Screen"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/btnHeaderRight"
+        android:background="@drawable/ic_person_add"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtADDUsername"
+        android:hint="Username"
+        android:textStyle="italic"
+        android:singleLine="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="100dp" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtADDPassword"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:textStyle="italic"
+        android:singleLine="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txtADDUsername"
+        android:layout_marginTop="40dp" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtADDPassword2"
+        android:inputType="textPassword"
+        android:hint="Retype Password"
+        android:textStyle="italic"
+        android:singleLine="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txtADDPassword"
+        android:layout_marginTop="40dp" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtADDEmail"
+        android:hint="Email"
+        android:textStyle="italic"
+        android:singleLine="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txtADDPassword2"
+        android:layout_marginTop="40dp" />
+
+</RelativeLayout>
