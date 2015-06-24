@@ -43,6 +43,8 @@ public class LoginScreenActivity extends Activity implements OnClickListener
 
     String GVUserID;
 
+    //Comentario de prueba
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -56,6 +58,7 @@ public class LoginScreenActivity extends Activity implements OnClickListener
         lblRegisterNewUser = (TextView)findViewById(R.id.lblRegisterNewUser);
 
         btnLogin = (Button)findViewById(R.id.btnLogin);
+        //ytgkjkkj
 
         btnLogin.setOnClickListener(this);
         lblForgotPassword.setOnClickListener(this);
