@@ -34,6 +34,9 @@ public class RegisterActivity extends Activity implements OnClickListener
     EditText txtADDUsername, txtADDPassword, txtADDPassword2, txtADDEmail;
     TextView btnHeaderLeft, btnHeaderRight;
 
+
+//gggg
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
