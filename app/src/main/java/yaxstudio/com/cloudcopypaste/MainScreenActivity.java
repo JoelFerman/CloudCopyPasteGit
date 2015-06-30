@@ -359,12 +359,6 @@ public class MainScreenActivity extends Activity implements OnClickListener
                             }
                         });
 
-//                        txtLink1.setText(Link1);
-//                        txtLink2.setText(Link2);
-//                        txtLink3.setText(Link3);
-//                        txtLink4.setText(Link4);
-//                        txtLink5.setText(Link5);
-
                         break;
 
                     case 0:

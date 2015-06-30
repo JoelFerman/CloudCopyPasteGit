@@ -155,19 +155,19 @@ public class LoginScreenActivity extends Activity implements OnClickListener
 
                 // Get and Store Data From JSON
                 success = json.getInt(TAG_SUCCESS);
-                GVUserID = json.getString(TAG_USERID);
-
-                GlobalVars.GVUserID = GVUserID;
-
-                // Variables To Compare Credentials
-                String userCompare = json.getString(TAG_USERNAME);
-                String passCompare = json.getString(TAG_PASSWORD);
 
                 switch (success)
                 {
                     case 0:
 
-                        Toast.makeText(LoginScreenActivity.this, "TEST", Toast.LENGTH_SHORT).show();
+                        runOnUiThread(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                Toast.makeText(LoginScreenActivity.this, "Credentials don't match", Toast.LENGTH_LONG).show();
+                            }
+                        });
 
                         Log.d("Invalid Credentials", json.toString());
 
@@ -175,16 +175,29 @@ public class LoginScreenActivity extends Activity implements OnClickListener
 
                     case 1:
 
+                        // Variables To Compare Credentials
+                        final String userCompare = json.getString(TAG_USERNAME);
+                        final String passCompare = json.getString(TAG_PASSWORD);
+
                         if (txtPassword.getText().toString().contentEquals(passCompare) && txtUsername.getText().toString().contentEquals(userCompare))
                         {
-                            Log.d("Successful Login!", json.toString());
+                            GVUserID = json.getString(TAG_USERID);
+
+                            GlobalVars.GVUserID = GVUserID;
 
                             Intent intMainScreen = new Intent(LoginScreenActivity.this, MainScreenActivity.class);
                             finish();
                             startActivity(intMainScreen);
 
-                            break;
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run()
+                                {
+                                    Toast.makeText(LoginScreenActivity.this, "Welcome! " + userCompare, Toast.LENGTH_LONG).show();
+                                }
+                            });
 
+                            break;
                         }
                         else if (!txtPassword.getText().toString().contentEquals(passCompare) && txtUsername.getText().toString().contentEquals(userCompare))
                         {
