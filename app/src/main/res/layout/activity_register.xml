@@ -14,14 +14,14 @@
         android:id="@+id/btnHeaderLeft"
         android:background="@drawable/ic_arrow_back"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtHeaderTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:text="Register Screen"
         android:textColor="#FFFFFF"
         android:textSize="18dp"
@@ -34,7 +34,7 @@
         android:background="@drawable/ic_person_add"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="15dp"/>
 
     <EditText
         android:layout_width="250dp"

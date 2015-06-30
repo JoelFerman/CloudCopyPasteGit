@@ -9,9 +9,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.content.ClipboardManager;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,10 +27,11 @@ import java.util.List;
 
 public class MainScreenActivity extends Activity implements OnClickListener
 {
-    TextView btnHeaderLeft, btnHeaderDownload, btnHeaderUpload, btnHeaderRight;
-    TextView copyLink1, copyLink2, copyLink3, copyLink4, copyLink5;
-    TextView pasteLink1, pasteLink2, pasteLink3, pasteLink4, pasteLink5;
+    ImageView btnDownload, btnUpload, btnCopy, btnPaste;
+    TextView btnHeaderRight;
     EditText txtLink1, txtLink2, txtLink3, txtLink4, txtLink5;
+
+    String editTextSelected;
 
     // Progress Dialog
     private ProgressDialog pDialog;
@@ -53,6 +56,7 @@ public class MainScreenActivity extends Activity implements OnClickListener
         setContentView(R.layout.activity_main_screen);
 
         castObjects();
+        EditTextFocus();
     }
 
     @Override
@@ -72,22 +76,11 @@ public class MainScreenActivity extends Activity implements OnClickListener
 
     public void castObjects()
     {
-        btnHeaderLeft = (TextView)findViewById(R.id.btnHeaderLeft);
-        btnHeaderDownload = (TextView)findViewById(R.id.btnHeaderDownload);
-        btnHeaderUpload = (TextView)findViewById(R.id.btnHeaderUpload);
+        btnDownload = (ImageView)findViewById(R.id.btnDownload);
+        btnUpload = (ImageView)findViewById(R.id.btnUpload);
+        btnCopy = (ImageView)findViewById(R.id.btnCopy);
+        btnPaste = (ImageView)findViewById(R.id.btnPaste);
         btnHeaderRight = (TextView)findViewById(R.id.btnHeaderRight);
-
-        copyLink1 = (TextView)findViewById(R.id.copyLink1);
-        copyLink2 = (TextView)findViewById(R.id.copyLink2);
-        copyLink3 = (TextView)findViewById(R.id.copyLink3);
-        copyLink4 = (TextView)findViewById(R.id.copyLink4);
-        copyLink5 = (TextView)findViewById(R.id.copyLink5);
-
-        pasteLink1 = (TextView)findViewById(R.id.pasteLink1);
-        pasteLink2 = (TextView)findViewById(R.id.pasteLink2);
-        pasteLink3 = (TextView)findViewById(R.id.pasteLink3);
-        pasteLink4 = (TextView)findViewById(R.id.pasteLink4);
-        pasteLink5 = (TextView)findViewById(R.id.pasteLink5);
 
         txtLink1 = (EditText)findViewById(R.id.txtLink1);
         txtLink2 = (EditText)findViewById(R.id.txtLink2);
@@ -95,22 +88,59 @@ public class MainScreenActivity extends Activity implements OnClickListener
         txtLink4 = (EditText)findViewById(R.id.txtLink4);
         txtLink5 = (EditText)findViewById(R.id.txtLink5);
 
-        btnHeaderLeft.setOnClickListener(this);
-        btnHeaderDownload.setOnClickListener(this);
-        btnHeaderUpload.setOnClickListener(this);
+        btnDownload.setOnClickListener(this);
+        btnUpload.setOnClickListener(this);
+        btnCopy.setOnClickListener(this);
+        btnPaste.setOnClickListener(this);
         btnHeaderRight.setOnClickListener(this);
+    }
 
-        copyLink1.setOnClickListener(this);
-        copyLink2.setOnClickListener(this);
-        copyLink3.setOnClickListener(this);
-        copyLink4.setOnClickListener(this);
-        copyLink5.setOnClickListener(this);
+    public void EditTextFocus()
+    {
+        txtLink1.setOnTouchListener(new View.OnTouchListener()
+        {
+            public boolean onTouch(View arg0, MotionEvent arg1)
+            {
+                editTextSelected = "1";
+                return false;
+            }
+        });
 
-        pasteLink1.setOnClickListener(this);
-        pasteLink2.setOnClickListener(this);
-        pasteLink3.setOnClickListener(this);
-        pasteLink4.setOnClickListener(this);
-        pasteLink5.setOnClickListener(this);
+        txtLink2.setOnTouchListener(new View.OnTouchListener()
+        {
+            public boolean onTouch(View arg0, MotionEvent arg1)
+            {
+                editTextSelected = "2";
+                return false;
+            }
+        });
+
+        txtLink3.setOnTouchListener(new View.OnTouchListener()
+        {
+            public boolean onTouch(View arg0, MotionEvent arg1)
+            {
+                editTextSelected = "3";
+                return false;
+            }
+        });
+
+        txtLink4.setOnTouchListener(new View.OnTouchListener()
+        {
+            public boolean onTouch(View arg0, MotionEvent arg1)
+            {
+                editTextSelected = "4";
+                return false;
+            }
+        });
+
+        txtLink5.setOnTouchListener(new View.OnTouchListener()
+        {
+            public boolean onTouch(View arg0, MotionEvent arg1)
+            {
+                editTextSelected = "5";
+                return false;
+            }
+        });
     }
 
     @Override
@@ -118,7 +148,7 @@ public class MainScreenActivity extends Activity implements OnClickListener
     {
         switch (v.getId())
         {
-            case R.id.btnHeaderDownload:
+            case R.id.btnDownload:
 
                 ClearLinks();
 
@@ -126,7 +156,7 @@ public class MainScreenActivity extends Activity implements OnClickListener
 
                 break;
 
-            case R.id.btnHeaderUpload:
+            case R.id.btnUpload:
 
                 new UploadLinks().execute();
 
@@ -140,93 +170,117 @@ public class MainScreenActivity extends Activity implements OnClickListener
 
                 break;
 
-            case R.id.copyLink1:
+            case R.id.btnCopy:
 
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("copy1", txtLink1.getText().toString());
-                clipboard.setPrimaryClip(clip);
+                EditTextFocus();
 
-                Toast.makeText(MainScreenActivity.this, "Text Copied to Clipboard", Toast.LENGTH_SHORT).show();
+                switch (editTextSelected)
+                {
+                    case "1":
 
-                break;
+                        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        ClipData clip = ClipData.newPlainText("copy1", txtLink1.getText().toString());
+                        clipboard.setPrimaryClip(clip);
 
-            case R.id.pasteLink1:
+                        Toast.makeText(MainScreenActivity.this, "Copied to Clipboard", Toast.LENGTH_SHORT).show();
 
-                clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
-                txtLink1.setText(item.getText());
+                        break;
 
-                break;
+                    case "2":
 
-            case R.id.copyLink2:
+                        clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        clip = ClipData.newPlainText("copy2", txtLink2.getText().toString());
+                        clipboard.setPrimaryClip(clip);
 
-                clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                clip = ClipData.newPlainText("copy2", txtLink2.getText().toString());
-                clipboard.setPrimaryClip(clip);
+                        Toast.makeText(MainScreenActivity.this, "Copied to Clipboard", Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(MainScreenActivity.this, "Text Copied to Clipboard", Toast.LENGTH_SHORT).show();
+                        break;
 
-                break;
+                    case "3":
 
-            case R.id.pasteLink2:
+                        clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        clip = ClipData.newPlainText("copy3", txtLink3.getText().toString());
+                        clipboard.setPrimaryClip(clip);
 
-                clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                item = clipboard.getPrimaryClip().getItemAt(0);
-                txtLink2.setText(item.getText());
+                        Toast.makeText(MainScreenActivity.this, "Text Copied to Clipboard", Toast.LENGTH_SHORT).show();
 
-                break;
+                        break;
 
-            case R.id.copyLink3:
+                    case "4":
 
-                clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                clip = ClipData.newPlainText("copy3", txtLink3.getText().toString());
-                clipboard.setPrimaryClip(clip);
+                        clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        clip = ClipData.newPlainText("copy4", txtLink4.getText().toString());
+                        clipboard.setPrimaryClip(clip);
 
-                Toast.makeText(MainScreenActivity.this, "Text Copied to Clipboard", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainScreenActivity.this, "Text Copied to Clipboard", Toast.LENGTH_SHORT).show();
 
-                break;
+                        break;
 
-            case R.id.pasteLink3:
+                    case "5":
 
-                clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                item = clipboard.getPrimaryClip().getItemAt(0);
-                txtLink3.setText(item.getText());
+                        clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        clip = ClipData.newPlainText("copy5", txtLink5.getText().toString());
+                        clipboard.setPrimaryClip(clip);
 
-                break;
+                        Toast.makeText(MainScreenActivity.this, "Text Copied to Clipboard", Toast.LENGTH_SHORT).show();
 
-            case R.id.copyLink4:
+                    default:
 
-                clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                clip = ClipData.newPlainText("copy4", txtLink4.getText().toString());
-                clipboard.setPrimaryClip(clip);
-
-                Toast.makeText(MainScreenActivity.this, "Text Copied to Clipboard", Toast.LENGTH_SHORT).show();
+                        break;
+                }
 
                 break;
 
-            case R.id.pasteLink4:
+            case R.id.btnPaste:
 
-                clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                item = clipboard.getPrimaryClip().getItemAt(0);
-                txtLink4.setText(item.getText());
+                EditTextFocus();
 
-                break;
+                switch (editTextSelected)
+                {
+                    case "1":
 
-            case R.id.copyLink5:
+                        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+                        txtLink1.setText(item.getText());
 
-                clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                clip = ClipData.newPlainText("copy5", txtLink5.getText().toString());
-                clipboard.setPrimaryClip(clip);
+                        break;
 
-                Toast.makeText(MainScreenActivity.this, "Text Copied to Clipboard", Toast.LENGTH_SHORT).show();
+                    case "2":
 
-                break;
+                        clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        item = clipboard.getPrimaryClip().getItemAt(0);
+                        txtLink2.setText(item.getText());
 
-            case R.id.pasteLink5:
+                        break;
 
-                clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                item = clipboard.getPrimaryClip().getItemAt(0);
-                txtLink5.setText(item.getText());
+                    case "3":
+
+                        clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        item = clipboard.getPrimaryClip().getItemAt(0);
+                        txtLink3.setText(item.getText());
+
+                        break;
+
+                    case "4":
+
+                        clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        item = clipboard.getPrimaryClip().getItemAt(0);
+                        txtLink4.setText(item.getText());
+
+                        break;
+
+                    case "5":
+
+                        clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        item = clipboard.getPrimaryClip().getItemAt(0);
+                        txtLink5.setText(item.getText());
+
+                        break;
+
+                    default:
+
+                        break;
+                }
 
                 break;
 

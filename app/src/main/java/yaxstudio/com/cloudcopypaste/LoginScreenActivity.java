@@ -195,11 +195,8 @@ public class LoginScreenActivity extends Activity implements OnClickListener
 
                     default:
 
-                        Toast.makeText(LoginScreenActivity.this, "Credentials don't match", Toast.LENGTH_LONG).show();
-
                         break;
                 }
-                Toast.makeText(LoginScreenActivity.this, "Credentials don't match", Toast.LENGTH_LONG).show();
             }
             catch (JSONException e)
             {

@@ -8,251 +8,157 @@
 
     <include layout="@layout/header" android:id="@+id/header"/>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="70dp"
-        android:id="@+id/linearHeader">
-
     <TextView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/btnHeaderLeft"
-        android:background="@drawable/ic_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtHeaderTitle"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="-10dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtHeaderTitle"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="105dp"
-            android:text="Main Screen"
-            android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:textStyle="bold"/>
-
-    <!--<ImageView-->
-        <!--android:layout_width="30dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:id="@+id/btnHeaderDownload"-->
-        <!--android:src="@drawable/ic_cloud_download"-->
-        <!--android:tint="#000000"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--android:layout_marginLeft="90dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="30dp"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:id="@+id/btnHeaderUpload"-->
-        <!--android:background="@drawable/ic_cloud_upload"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--android:layout_marginLeft="70dp"/>-->
+        android:layout_marginLeft="105dp"
+        android:text="Main Screen"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:id="@+id/btnHeaderRight"
         android:background="@drawable/ic_exit_to_app"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="95dp" />
-
-    </LinearLayout>
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="20dp" />
 
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:id="@+id/btnHeaderDownload"
+        android:id="@+id/btnDownload"
         android:layout_below="@+id/header"
         android:src="@drawable/ic_cloud_download"
         android:tint="#000000"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="110dp"/>
+        android:layout_marginLeft="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblContentDownload"
+        android:text="Download"
+        android:textStyle="bold"
+        android:textSize="10dp"
+        android:layout_below="@+id/btnDownload"
+        android:layout_marginLeft="35dp"/>
 
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:id="@+id/btnHeaderUpload"
+        android:id="@+id/btnUpload"
         android:src="@drawable/ic_cloud_upload"
         android:tint="#000000"
         android:layout_below="@+id/header"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="210dp"/>
+        android:layout_alignLeft="@+id/btnDownload"
+        android:layout_marginLeft="80dp"/>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLink1"
+        android:id="@+id/lblContentUpload"
+        android:text="Upload"
+        android:textStyle="bold"
+        android:textSize="10dp"
+        android:layout_below="@+id/btnUpload"
+        android:layout_marginLeft="120dp"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/btnCopy"
+        android:src="@drawable/ic_content_copy"
+        android:tint="#000000"
         android:layout_below="@+id/header"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@+id/btnPaste"
+        android:layout_marginRight="80dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblContentCopy"
+        android:text="Copy"
+        android:textStyle="bold"
+        android:textSize="10dp"
+        android:layout_below="@+id/btnCopy"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="119dp"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/btnPaste"
+        android:src="@drawable/ic_content_paste"
+        android:tint="#000000"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="35dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblContentPaste"
+        android:text="Paste"
+        android:textStyle="bold"
+        android:textSize="10dp"
+        android:layout_below="@+id/btnPaste"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="37dp"/>
 
     <EditText
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:id="@+id/txtLink1"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:layout_below="@+id/header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:id="@+id/copyLink1"
-        android:text="Copy"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        android:textColor="@drawable/link_button_pressed"
-        android:layout_marginLeft="5dp"/>
+        android:id="@+id/txtLink2"
+        android:singleLine="true"
+        android:layout_below="@id/txtLink1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <EditText
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:id="@+id/pasteLink1"
-        android:text="Paste"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        android:textColor="@drawable/link_button_pressed"
-        android:layout_marginLeft="10dp"/>
+        android:id="@+id/txtLink3"
+        android:singleLine="true"
+        android:layout_below="@id/txtLink2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <EditText
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLink2"
-        android:layout_below="@+id/linearLink1"
-        android:layout_marginTop="50dp">
+        android:id="@+id/txtLink4"
+        android:singleLine="true"
+        android:layout_below="@id/txtLink3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
 
-        <EditText
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtLink2"
-            android:singleLine="true"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/copyLink2"
-            android:text="Copy"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@drawable/link_button_pressed"
-            android:layout_marginLeft="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/pasteLink2"
-            android:text="Paste"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@drawable/link_button_pressed"
-            android:layout_marginLeft="10dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <EditText
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLink3"
-        android:layout_below="@+id/linearLink2"
-        android:layout_marginTop="50dp">
-
-        <EditText
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtLink3"
-            android:singleLine="true"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/copyLink3"
-            android:text="Copy"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@drawable/link_button_pressed"
-            android:layout_marginLeft="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/pasteLink3"
-            android:text="Paste"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@drawable/link_button_pressed"
-            android:layout_marginLeft="10dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLink4"
-        android:layout_below="@+id/linearLink3"
-        android:layout_marginTop="50dp">
-
-        <EditText
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtLink4"
-            android:singleLine="true"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/copyLink4"
-            android:text="Copy"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@drawable/link_button_pressed"
-            android:layout_marginLeft="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/pasteLink4"
-            android:text="Paste"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@drawable/link_button_pressed"
-            android:layout_marginLeft="10dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLink5"
-        android:layout_below="@+id/linearLink4"
-        android:layout_marginTop="50dp">
-
-        <EditText
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtLink5"
-            android:singleLine="true"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/copyLink5"
-            android:text="Copy"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@drawable/link_button_pressed"
-            android:layout_marginLeft="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/pasteLink5"
-            android:text="Paste"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="@drawable/link_button_pressed"
-            android:layout_marginLeft="10dp"/>
-
-    </LinearLayout>
+        android:id="@+id/txtLink5"
+        android:singleLine="true"
+        android:layout_below="@id/txtLink4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
 
 </RelativeLayout>
