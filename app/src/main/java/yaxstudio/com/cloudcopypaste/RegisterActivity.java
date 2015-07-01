@@ -154,26 +154,64 @@ public class RegisterActivity extends Activity implements OnClickListener
                 //Posting user data to script
                 JSONObject json = JSONParser.makeHttpRequest(REGISTER_URL, "POST", params);
 
-                // full json response
-                Log.d("Register attempt", json.toString());
-
                 // json success element
                 success = json.getInt(TAG_SUCCESS);
 
-                if (success == 1)
+                switch (success)
                 {
-                    Log.d("User Created!", json.toString());
+                    case 0:
 
-                    return json.getString(TAG_MESSAGE);
+                        final String errorMessage = json.getString(TAG_MESSAGE);
+
+                        runOnUiThread(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                Toast.makeText(RegisterActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+                        break;
+
+                    case 1:
+
+                        final String successMessage = json.getString(TAG_MESSAGE);
+
+                        Intent intLoginScreen = new Intent(RegisterActivity.this, LoginScreenActivity.class);
+                        finish();
+                        startActivity(intLoginScreen);
+
+                        runOnUiThread(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                Toast.makeText(RegisterActivity.this, successMessage, Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+                        break;
+
+                    default:
+
+                        break;
                 }
-                else
-                {
 
-                    Log.d("Register Failure!", json.getString(TAG_MESSAGE));
-
-                    return json.getString(TAG_MESSAGE);
-
-                }
+//                if (success == 1)
+//                {
+//                    Log.d("User Created!", json.toString());
+//
+//                    return json.getString(TAG_MESSAGE);
+//                }
+//                else
+//                {
+//
+//                    Log.d("Register Failure!", json.getString(TAG_MESSAGE));
+//
+//                    return json.getString(TAG_MESSAGE);
+//
+//                }
             }
             catch (JSONException e)
             {
@@ -183,15 +221,14 @@ public class RegisterActivity extends Activity implements OnClickListener
             return null;
         }
 
-        protected void onPostExecute(String file_url)
+        protected void onPostExecute(String message)
         {
             // dismiss the dialog once product deleted
             pDialog.dismiss();
 
-            if (file_url != null)
+            if (message != null)
             {
-                Toast.makeText(RegisterActivity.this, file_url, Toast.LENGTH_LONG).show();
-
+                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
                 ClearAllFields();
             }
         }

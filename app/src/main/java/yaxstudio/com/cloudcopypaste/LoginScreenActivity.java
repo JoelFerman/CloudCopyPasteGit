@@ -38,12 +38,8 @@ public class LoginScreenActivity extends Activity implements OnClickListener
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     private static final String TAG_USERID = "ID_User";
-    private static final String TAG_USERNAME = "Username_User";
-    private static final String TAG_PASSWORD = "Password_User";
 
     String GVUserID;
-
-    //Comentario de prueba
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,7 +54,6 @@ public class LoginScreenActivity extends Activity implements OnClickListener
         lblRegisterNewUser = (TextView)findViewById(R.id.lblRegisterNewUser);
 
         btnLogin = (Button)findViewById(R.id.btnLogin);
-        //ytgkjkkj
 
         btnLogin.setOnClickListener(this);
         lblForgotPassword.setOnClickListener(this);
@@ -69,13 +64,13 @@ public class LoginScreenActivity extends Activity implements OnClickListener
     @Override
     public void onBackPressed()
     {
-        if (back_pressed + 2000 > System.currentTimeMillis())
+        if (back_pressed + 3000 > System.currentTimeMillis())
         {
             super.onBackPressed();
         }
         else
         {
-            Toast.makeText(getBaseContext(), "Press once again to exit!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "Press back button once again to exit!", Toast.LENGTH_SHORT).show();
             back_pressed = System.currentTimeMillis();
         }
     }
@@ -145,13 +140,9 @@ public class LoginScreenActivity extends Activity implements OnClickListener
                 params.add(new BasicNameValuePair("Username", Username));
                 params.add(new BasicNameValuePair("Password", Password));
 
-
                 Log.d("request!", "starting");
 
                 JSONObject json = jsonParser.makeHttpRequest(LOGIN_URL, "POST", params);
-
-                // checking  log for json response
-                Log.d("Login attempt", json.toString());
 
                 // Get and Store Data From JSON
                 success = json.getInt(TAG_SUCCESS);
@@ -160,51 +151,40 @@ public class LoginScreenActivity extends Activity implements OnClickListener
                 {
                     case 0:
 
+                        final String errorMessage = json.getString(TAG_MESSAGE);
+
                         runOnUiThread(new Runnable()
                         {
                             @Override
                             public void run()
                             {
-                                Toast.makeText(LoginScreenActivity.this, "Credentials don't match", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginScreenActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                             }
                         });
-
-                        Log.d("Invalid Credentials", json.toString());
 
                         break;
 
                     case 1:
 
-                        // Variables To Compare Credentials
-                        final String userCompare = json.getString(TAG_USERNAME);
-                        final String passCompare = json.getString(TAG_PASSWORD);
+                        GVUserID = json.getString(TAG_USERID);
+                        GlobalVars.GVUserID = GVUserID;
 
-                        if (txtPassword.getText().toString().contentEquals(passCompare) && txtUsername.getText().toString().contentEquals(userCompare))
+                        final String welcomeMessage = json.getString(TAG_MESSAGE);
+
+                        Intent intMainScreen = new Intent(LoginScreenActivity.this, MainScreenActivity.class);
+                        finish();
+                        startActivity(intMainScreen);
+
+                        runOnUiThread(new Runnable()
                         {
-                            GVUserID = json.getString(TAG_USERID);
+                            @Override
+                            public void run()
+                            {
+                                Toast.makeText(LoginScreenActivity.this, welcomeMessage, Toast.LENGTH_LONG).show();
+                            }
+                        });
 
-                            GlobalVars.GVUserID = GVUserID;
-
-                            Intent intMainScreen = new Intent(LoginScreenActivity.this, MainScreenActivity.class);
-                            finish();
-                            startActivity(intMainScreen);
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run()
-                                {
-                                    Toast.makeText(LoginScreenActivity.this, "Welcome! " + userCompare, Toast.LENGTH_LONG).show();
-                                }
-                            });
-
-                            break;
-                        }
-                        else if (!txtPassword.getText().toString().contentEquals(passCompare) && txtUsername.getText().toString().contentEquals(userCompare))
-                        {
-                            Toast.makeText(LoginScreenActivity.this, "Credentials don't match", Toast.LENGTH_LONG).show();
-
-                            break;
-                        }
+                        break;
 
                     default:
 
