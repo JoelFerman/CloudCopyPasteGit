@@ -190,6 +190,7 @@ public class LoginScreenActivity extends Activity implements OnClickListener
 
                         break;
                 }
+
             }
             catch (JSONException e)
             {
