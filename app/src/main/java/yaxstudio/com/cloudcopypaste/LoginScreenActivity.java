@@ -160,6 +160,7 @@ public class LoginScreenActivity extends Activity implements OnClickListener
                             {
                                 Toast.makeText(LoginScreenActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                             }
+
                         });
 
                         break;
