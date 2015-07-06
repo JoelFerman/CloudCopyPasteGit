@@ -10,7 +10,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:screenOrientation="portrait">
+        android:screenOrientation="portrait"
+        android:windowSoftInputMode="adjustResize">
         <activity
             android:name=".LoginScreenActivity"
             android:label="@string/app_name">

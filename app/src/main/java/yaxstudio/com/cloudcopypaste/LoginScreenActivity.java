@@ -47,13 +47,13 @@ public class LoginScreenActivity extends Activity implements OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
 
-        txtUsername = (EditText)findViewById(R.id.txtUsername);
-        txtPassword = (EditText)findViewById(R.id.txtPassword);
+        txtUsername = (EditText) findViewById(R.id.txtUsername);
+        txtPassword = (EditText) findViewById(R.id.txtPassword);
 
-        lblForgotPassword = (TextView)findViewById(R.id.lblForgotPassword);
-        lblRegisterNewUser = (TextView)findViewById(R.id.lblRegisterNewUser);
+        lblForgotPassword = (TextView) findViewById(R.id.lblForgotPassword);
+        lblRegisterNewUser = (TextView) findViewById(R.id.lblRegisterNewUser);
 
-        btnLogin = (Button)findViewById(R.id.btnLogin);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(this);
         lblForgotPassword.setOnClickListener(this);
@@ -61,6 +61,7 @@ public class LoginScreenActivity extends Activity implements OnClickListener
     }
 
     public static long back_pressed;
+
     @Override
     public void onBackPressed()
     {
@@ -110,11 +111,11 @@ public class LoginScreenActivity extends Activity implements OnClickListener
     {
         /**
          * Before starting background thread Show Progress Dialog
-         * */
+         */
         boolean failure = false;
 
         @Override
-        protected void onPreExecute ()
+        protected void onPreExecute()
         {
             super.onPreExecute();
             pDialog = new ProgressDialog(LoginScreenActivity.this);
@@ -147,17 +148,17 @@ public class LoginScreenActivity extends Activity implements OnClickListener
                 // Get and Store Data From JSON
                 success = json.getInt(TAG_SUCCESS);
 
+                Log.d("success: ", String.valueOf(success));
+
                 switch (success)
                 {
                     case 0:
 
                         final String errorMessage = json.getString(TAG_MESSAGE);
 
-                        runOnUiThread(new Runnable()
-                        {
+                        runOnUiThread(new Runnable() {
                             @Override
-                            public void run()
-                            {
+                            public void run() {
                                 Toast.makeText(LoginScreenActivity.this, errorMessage, Toast.LENGTH_LONG).show();
                             }
                         });
@@ -175,11 +176,9 @@ public class LoginScreenActivity extends Activity implements OnClickListener
                         finish();
                         startActivity(intMainScreen);
 
-                        runOnUiThread(new Runnable()
-                        {
+                        runOnUiThread(new Runnable() {
                             @Override
-                            public void run()
-                            {
+                            public void run() {
                                 Toast.makeText(LoginScreenActivity.this, welcomeMessage, Toast.LENGTH_LONG).show();
                             }
                         });
@@ -190,7 +189,6 @@ public class LoginScreenActivity extends Activity implements OnClickListener
 
                         break;
                 }
-
             }
             catch (JSONException e)
             {
@@ -202,7 +200,8 @@ public class LoginScreenActivity extends Activity implements OnClickListener
 
         /**
          * Once the background process is done we need to  Dismiss the progress dialog asap
-         * **/
+         * *
+         */
 
         protected void onPostExecute(String message)
         {
@@ -212,7 +211,6 @@ public class LoginScreenActivity extends Activity implements OnClickListener
             {
                 Toast.makeText(LoginScreenActivity.this, message, Toast.LENGTH_LONG).show();
             }
-
         }
     }
 }

@@ -26,7 +26,7 @@
         android:text="Login Screen"
         android:textColor="#FFFFFF"
         android:textSize="18dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <EditText
         android:layout_width="250dp"
@@ -61,7 +61,7 @@
         android:textSize="14dp"
         android:text="Login"
         android:textColor="#FFFFFF"
-        android:background="@drawable/buttonshape"/>
+        android:background="@drawable/buttonshape" />
 
     <TextView
         android:layout_width="wrap_content"
