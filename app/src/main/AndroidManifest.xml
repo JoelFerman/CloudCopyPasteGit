@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="yaxstudio.com.cloudcopypaste">
+    package="yaxstudio.com.cloudcopypaste" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,11 +9,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:screenOrientation="portrait">
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".LoginScreenActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,11 +22,11 @@
         </activity>
         <activity
             android:name=".MainScreenActivity"
-            android:label="@string/title_activity_main_screen">
+            android:label="@string/title_activity_main_screen" >
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:label="@string/title_activity_register">
+            android:label="@string/title_activity_register" >
         </activity>
     </application>
 
