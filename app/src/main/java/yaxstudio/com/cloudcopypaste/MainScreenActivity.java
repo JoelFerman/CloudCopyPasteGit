@@ -12,8 +12,12 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -95,48 +99,47 @@ public class MainScreenActivity extends Activity implements OnClickListener
         btnHeaderRight.setOnClickListener(this);
     }
 
+    public void EditTextAnimation()
+    {
+        txtLink1.startAnimation(AnimationUtils.loadAnimation(MainScreenActivity.this, android.R.anim.fade_in));
+        txtLink2.startAnimation(AnimationUtils.loadAnimation(MainScreenActivity.this, android.R.anim.fade_in));
+        txtLink3.startAnimation(AnimationUtils.loadAnimation(MainScreenActivity.this, android.R.anim.fade_in));
+        txtLink4.startAnimation(AnimationUtils.loadAnimation(MainScreenActivity.this, android.R.anim.fade_in));
+        txtLink5.startAnimation(AnimationUtils.loadAnimation(MainScreenActivity.this, android.R.anim.fade_in));
+    }
+
     public void EditTextFocus()
     {
-        txtLink1.setOnTouchListener(new View.OnTouchListener()
-        {
-            public boolean onTouch(View arg0, MotionEvent arg1)
-            {
+        txtLink1.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View arg0, MotionEvent arg1) {
                 editTextSelected = "1";
                 return false;
             }
         });
 
-        txtLink2.setOnTouchListener(new View.OnTouchListener()
-        {
-            public boolean onTouch(View arg0, MotionEvent arg1)
-            {
+        txtLink2.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View arg0, MotionEvent arg1) {
                 editTextSelected = "2";
                 return false;
             }
         });
 
-        txtLink3.setOnTouchListener(new View.OnTouchListener()
-        {
-            public boolean onTouch(View arg0, MotionEvent arg1)
-            {
+        txtLink3.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View arg0, MotionEvent arg1) {
                 editTextSelected = "3";
                 return false;
             }
         });
 
-        txtLink4.setOnTouchListener(new View.OnTouchListener()
-        {
-            public boolean onTouch(View arg0, MotionEvent arg1)
-            {
+        txtLink4.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View arg0, MotionEvent arg1) {
                 editTextSelected = "4";
                 return false;
             }
         });
 
-        txtLink5.setOnTouchListener(new View.OnTouchListener()
-        {
-            public boolean onTouch(View arg0, MotionEvent arg1)
-            {
+        txtLink5.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View arg0, MotionEvent arg1) {
                 editTextSelected = "5";
                 return false;
             }
@@ -351,6 +354,7 @@ public class MainScreenActivity extends Activity implements OnClickListener
                             @Override
                             public void run()
                             {
+                                EditTextAnimation();
                                 txtLink1.setText(Link1);
                                 txtLink2.setText(Link2);
                                 txtLink3.setText(Link3);
