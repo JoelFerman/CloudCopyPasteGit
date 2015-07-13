@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
 public class RegisterActivity extends Activity implements OnClickListener
 {
     private ProgressDialog pDialog;
@@ -146,16 +147,17 @@ public class RegisterActivity extends Activity implements OnClickListener
                 // Building Parameters
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-                params.add(new BasicNameValuePair("IDUser", IDUser));
-                params.add(new BasicNameValuePair("Username", Username));
-                params.add(new BasicNameValuePair("Password", Password));
-                params.add(new BasicNameValuePair("Email", Email));
-                params.add(new BasicNameValuePair("IDLink", IDLink));
+                //params.add(new BasicNameValuePair("IDUser", IDUser));
+                params.add(new BasicNameValuePair("username", Username));
+                params.add(new BasicNameValuePair("password", Password));
+                params.add(new BasicNameValuePair("email", Email));
+                //params.add(new BasicNameValuePair("IDLink", IDLink));
 
                 Log.d("request!", "starting");
 
                 //Posting user data to script
-                JSONObject json = JSONParser.makeHttpRequest(REGISTER_URL, "POST", params);
+                //JSONObject json = JSONParser.makeHttpRequest(REGISTER_URL, "POST", params);
+                JSONObject json = JSONParser.makeHttpRequest(GlobalVars.api_ulr + "/register", "POST", params);
 
                 // json success element
                 success = json.getInt(TAG_SUCCESS);

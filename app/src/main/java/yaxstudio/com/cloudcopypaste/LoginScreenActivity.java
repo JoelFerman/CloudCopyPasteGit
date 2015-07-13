@@ -17,7 +17,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,7 +141,8 @@ public class LoginScreenActivity extends Activity implements OnClickListener
 
                 Log.d("request!", "starting");
 
-                JSONObject json = jsonParser.makeHttpRequest(LOGIN_URL, "POST", params);
+                //JSONObject json = jsonParser.makeHttpRequest(LOGIN_URL, "POST", params);
+                JSONObject json = jsonParser.makeHttpRequest(GlobalVars.api_ulr + "/login", "POST", params);
 
                 // Get and Store Data From JSON
                 success = json.getInt(TAG_SUCCESS);
